@@ -1,30 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from 'react-native';
+import {
+  useFonts,
+  Inter_400Regular,
+  Inter_600SemiBold,
+  Inter_700Bold,
+  Inter_900Black
+} from '@expo-google-fonts/inter'
+
+import { Home } from './src/screens/Home'
+import { Background } from './src/components/Background';
+import { Loading } from './src/components/Loading';
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Inter_400Regular,
+    Inter_600SemiBold,
+    Inter_700Bold,
+    Inter_900Black
+  })
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Hello React Native</Text>
-      <Text style={styles.title2}>Designed by Lemaun</Text>
-      <StatusBar style="auto" backgroundColor="#d0ff00"/>
-    </View>
+    <Background>
+      <StatusBar 
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent
+      />
+      { fontsLoaded ? <Home /> : <Loading />}
+    </Background>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#0c0c0c',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    color: '#f5f5f5',
-    fontSize: 22
-  },
-  title2: {
-    color: '#d0ff00',
-    fontSize: 18,
-    textDecoration: 'italic'
-  }
-});
