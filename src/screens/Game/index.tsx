@@ -13,6 +13,7 @@ import { DuoCard, DuoCardProps } from '../../components/DuoCard';
 import { THEME } from '../../theme';
 import { styles } from './styles';
 import { useEffect, useState } from 'react';
+import { DuoMatch } from '../../components/DuoMatch';
 
 
 export function Game() {
@@ -27,7 +28,7 @@ export function Game() {
   }
 
   useEffect(() => {
-    fetch(`http://192.168.15.21:3333/games/${game.id}/ads`)
+    fetch(`http://192.168.0.117:3333/games/${game.id}/ads`)
     .then(response => response.json())
     .then(data => setDuos(data))
     
@@ -83,6 +84,13 @@ export function Game() {
             </Text>
           )}
         />
+
+        <DuoMatch
+          visible={true}
+          discord="teste"
+        >
+
+        </DuoMatch>
       </SafeAreaView>
     </Background>
   );
